@@ -1,0 +1,45 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform plan files
+*.tfplan
+plan.out
+
+# AWS / credentials
+.aws/
+credentials
+*.pem
+*.key
+
+# Kubernetes secrets
+*-secret.yaml
+secrets.yaml
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
