@@ -7,7 +7,7 @@ resource "aws_budgets_budget" "project_bedrock" {
 
   cost_filter {
     name   = "TagKeyValue"
-    values = ["Project$tinyuka-2025-capstone"]
+    values = ["user:Project$tinyuka-2025-capstone"]
   }
 
   notification {
