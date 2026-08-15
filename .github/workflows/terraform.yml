@@ -16,6 +16,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   terraform:
@@ -55,8 +56,38 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
+        id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: |
+          terraform plan -no-color 2>&1 | tee plan.txt
+          exit ${PIPESTATUS[0]}
+
+      - name: Comment Terraform Plan on PR
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+
+            const plan = fs.readFileSync('terraform/plan.txt', 'utf8');
+
+            const body = `## Terraform Plan
+
+            <details>
+            <summary>Show Terraform Plan</summary>
+
+            \`\`\`
+            ${plan}
+            \`\`\`
+
+            </details>`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
 
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
