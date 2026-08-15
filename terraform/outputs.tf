@@ -3,15 +3,6 @@ output "vpc_id" {
   value       = module.vpc.vpc_id
 }
 
-output "private_subnet_ids" {
-  description = "Private subnet IDs used by EKS and RDS"
-  value       = module.vpc.private_subnets
-}
-
-output "public_subnet_ids" {
-  description = "Public subnet IDs used by internet-facing resources"
-  value       = module.vpc.public_subnets
-}
 output "cluster_endpoint" {
   description = "EKS cluster endpoint"
   value       = module.eks.cluster_endpoint
