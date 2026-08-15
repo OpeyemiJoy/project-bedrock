@@ -43,3 +43,11 @@ __pycache__/
 
 # Node
 node_modules/
+terraform/lambda/*.zip
+
+# Terraform generated plans and reports
+*.plan
+*.plan.txt
+terraform/*-plan.txt
+terraform/plan.txt
+terraform/state-list.txt
