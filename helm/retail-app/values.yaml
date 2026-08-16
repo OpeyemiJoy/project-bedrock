@@ -1,0 +1,9 @@
+namespace: retail-app
+
+ui:
+  replicas: 1
+  image:
+    repository: public.ecr.aws/aws-containers/retail-store-sample-ui
+    tag: latest
+  service:
+    port: 80
