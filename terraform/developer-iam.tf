@@ -24,3 +24,20 @@ resource "aws_eks_access_policy_association" "developer_view" {
     namespaces = ["retail-app"]
   }
 }
+resource "aws_iam_user_policy" "developer_s3_upload" {
+  name = "${local.developer_user_name}-s3-upload"
+  user = aws_iam_user.developer_view.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject"
+        ]
+        Resource = "${aws_s3_bucket.assets.arn}/*"
+      }
+    ]
+  })
+}
