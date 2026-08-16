@@ -80,9 +80,9 @@ module "eks" {
 
       instance_types = ["t3.medium"]
 
-      min_size     = 1
-      max_size     = 2
-      desired_size = 2
+      min_size     = 3
+      max_size     = 5
+      desired_size = 5
 
       subnet_ids = module.vpc.private_subnets
 

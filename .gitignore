@@ -51,3 +51,7 @@ terraform/lambda/*.zip
 terraform/*-plan.txt
 terraform/plan.txt
 terraform/state-list.txt
+
+# Local Terraform binary plan files
+terraform/nodeplan
+terraform/tfplan
